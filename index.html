@@ -144,6 +144,10 @@ h1.hero-name em{font-style:normal;color:var(--ice)}
   clip-path:url(#orbClip);
   -webkit-clip-path:url(#orbClip);
   display:block;
+  transition:filter .4s ease;
+}
+.orb-wrap:hover .orb-photo{
+  filter:brightness(0.45);
 }
 .orb-photo-placeholder{
   position:absolute;inset:0;
