@@ -144,6 +144,7 @@ h1.hero-name em{font-style:normal;color:var(--ice)}
   clip-path:url(#orbClip);
   -webkit-clip-path:url(#orbClip);
   display:block;
+  z-index:1;
   transition:filter .4s ease;
 }
 .orb-wrap:hover .orb-photo{
@@ -154,7 +155,8 @@ h1.hero-name em{font-style:normal;color:var(--ice)}
   position:absolute;inset:0;width:100%;height:100%;
   clip-path:url(#orbClip);
   -webkit-clip-path:url(#orbClip);
-  pointer-events:none;z-index:2;
+  pointer-events:none;
+  z-index:5;
   background:radial-gradient(ellipse 60% 55% at 50% 45%,
     transparent 30%,
     rgba(4,8,20,.55) 60%,
@@ -167,20 +169,13 @@ h1.hero-name em{font-style:normal;color:var(--ice)}
 .orb-wrap:hover .orb-vignette{
   opacity:1;
 }
-.orb-photo-placeholder{
-  position:absolute;inset:0;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:.6rem;color:var(--muted);font-size:.78rem;text-align:center;padding:2rem;
-  clip-path:url(#orbClip);-webkit-clip-path:url(#orbClip);
-  background:linear-gradient(160deg,#0e1a2e 0%,#091120 100%);
-}
 .orb-canvas{
   position:absolute;inset:0;width:100%;height:100%;
-  pointer-events:none;z-index:3;
+  pointer-events:none;z-index:6;
 }
 .orb-glass{
   position:absolute;inset:0;width:100%;height:100%;
-  pointer-events:none;z-index:4;
+  pointer-events:none;z-index:7;
 }
 /* stat strip */
 .hero-stats{
