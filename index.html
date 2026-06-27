@@ -285,6 +285,41 @@ section:nth-of-type(even){background:var(--ink2)}
   cursor:default;padding:1.5rem;text-align:center;
 }
 
+/* ── LIGHTBOX ── */
+#lightbox{
+  position:fixed;inset:0;z-index:999;
+  background:rgba(4,6,14,.93);backdrop-filter:blur(14px);
+  display:none;align-items:center;justify-content:center;
+  flex-direction:column;gap:1.25rem;padding:1.5rem;
+}
+#lightbox.open{display:flex}
+#lightbox img{
+  max-width:88vw;max-height:78vh;object-fit:contain;
+  border-radius:10px;box-shadow:0 0 80px rgba(0,0,0,.9);
+  animation:lbIn .22s ease;
+}
+@keyframes lbIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+#lb-info{text-align:center;max-width:560px}
+#lb-info h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:.3rem}
+#lb-info p{font-size:.85rem;color:var(--muted)}
+#lb-close{
+  position:fixed;top:1.2rem;right:1.4rem;
+  background:rgba(255,255,255,.08);border:1px solid var(--border);
+  color:var(--text);font-size:1.3rem;width:40px;height:40px;border-radius:50%;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;
+}
+#lb-close:hover{background:rgba(255,255,255,.2)}
+#lb-prev,#lb-next{
+  position:fixed;top:50%;transform:translateY(-50%);
+  background:rgba(255,255,255,.08);border:1px solid var(--border);
+  color:var(--text);font-size:1.3rem;width:44px;height:44px;border-radius:50%;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:.2s;user-select:none;
+}
+#lb-prev{left:1rem}#lb-next{right:1rem}
+#lb-prev:hover,#lb-next:hover{background:rgba(255,255,255,.2);border-color:var(--ice)}
+.gcard{cursor:zoom-in}
+
 /* ── AWARDS ── */
 .award-list{display:flex;flex-direction:column;gap:1.1rem;max-width:900px}
 .aw{
@@ -888,9 +923,17 @@ document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 function buildGallery(){
   if(typeof GALLERY==='undefined') return;
 
-  function makeCard(item){
+  function makeCard(item, idx){
     const tagsHtml = item.tags.map(t=>`<span class="tag">${t}</span>`).join('');
-    return `<div class="gcard">
+    if(item.video){
+      return `<div class="gcard">
+        <div class="gthumb" style="align-items:center;justify-content:center">
+          <iframe src="${item.video}" style="position:absolute;inset:0;width:100%;height:100%;border:0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="ginfo"><h3>${item.title}</h3><p>${item.desc}</p><div class="tags">${tagsHtml}</div></div>
+      </div>`;
+    }
+    return `<div class="gcard" onclick="openLightbox(${idx})" data-idx="${idx}">
       <div class="gthumb">
         <img src="images/${item.file}" alt="${item.title}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" loading="lazy">
       </div>
@@ -907,12 +950,57 @@ function buildGallery(){
     const panel = document.getElementById('tab-'+tab);
     if(!panel) return;
     const items = tab==='all' ? GALLERY : GALLERY.filter(i=>i.tab===tab);
-    panel.innerHTML = items.map(makeCard).join('');
+    panel.innerHTML = items.map((item,i)=>makeCard(item,GALLERY.indexOf(item))).join('');
     if(items.length===0){
       panel.innerHTML = '<div class="add-card"><div style="font-size:1.5rem;opacity:.3">＋</div><p>Add images in gallery-data.js</p></div>';
     }
   });
 }
+
+/* Lightbox */
+let lbIdx=0;
+const imageItems = ()=>GALLERY.filter(i=>!i.video);
+
+function openLightbox(galleryIdx){
+  const item = GALLERY[galleryIdx];
+  if(!item||item.video) return;
+  const imgItems = imageItems();
+  lbIdx = imgItems.indexOf(item);
+  showLb();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function showLb(){
+  const items = imageItems();
+  if(!items.length) return;
+  lbIdx = (lbIdx+items.length)%items.length;
+  const item = items[lbIdx];
+  const img = document.getElementById('lb-img');
+  img.style.opacity='0';
+  img.src='images/'+item.file;
+  img.alt=item.title;
+  img.onload=()=>{img.style.opacity='1';img.style.transition='opacity .2s'};
+  document.getElementById('lb-title').textContent=item.title;
+  document.getElementById('lb-desc').textContent=item.desc;
+}
+
+function closeLb(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+document.getElementById('lb-close').addEventListener('click',closeLb);
+document.getElementById('lb-prev').addEventListener('click',()=>{lbIdx--;showLb()});
+document.getElementById('lb-next').addEventListener('click',()=>{lbIdx++;showLb()});
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLb()});
+document.addEventListener('keydown',e=>{
+  const lb=document.getElementById('lightbox');
+  if(!lb.classList.contains('open')) return;
+  if(e.key==='Escape') closeLb();
+  if(e.key==='ArrowLeft'){lbIdx--;showLb()}
+  if(e.key==='ArrowRight'){lbIdx++;showLb()}
+});
 
 /* Gallery tabs */
 document.querySelectorAll('.tab-btn').forEach(btn=>{
@@ -926,5 +1014,13 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
 
 buildGallery();
 </script>
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button id="lb-close" aria-label="Close">✕</button>
+  <button id="lb-prev" aria-label="Previous">&#8592;</button>
+  <img id="lb-img" src="" alt="">
+  <div id="lb-info"><h3 id="lb-title"></h3><p id="lb-desc"></p></div>
+  <button id="lb-next" aria-label="Next">&#8594;</button>
+</div>
 </body>
 </html>
