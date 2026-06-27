@@ -127,5 +127,18 @@ const GALLERY = [
   // ── CONCEPT ART ──────────────────────────────────────────
   // Add concept art & storyboards here:
   // { file:"concept-1.jpg", title:"Character Concept", desc:"Original character design sheet", tags:["Character","Design"], tab:"concept" },
+  { file:"ECAunderwater.png", title:"Crebstin's Garden Concept Art", desc:"Original environment concept art for a dnd story", tags:["Environment","Design"], tab:"concept" },
+  { file:"WarriorCA.png", title:"Warrior Thomas Concept Art", desc:"Original character concept art for my 3d sculpt", tags:["Character","Design"], tab:"concept" },
+  { file:"Benamrendered.png", title:"Benam Concept Art", desc:"Original character illustrationt", tags:["Character","Design"], tab:"concept" },
+  { file:"Benam.png", title:"Benam Silhouette test", desc:"Original character concept art", tags:["Character","Design"], tab:"concept" },
+  { file:"AnomalyCA.png", title:"Anomaly factory CA", desc:"Concept art for the hallway environment in Anomaly", tags:["Environment","Design"], tab:"concept" },
+  { file:"Puppet1.png", title:"Illustrated Art", desc:"Rendered a motion graphics scene for the short film L.O.S.T", tags:["Character","Design"], tab:"concept" },
+  { file:"Puppet4.png", title:"Illustrated Art 2", desc:"Rendered a motion graphics scene for the short film L.O.S.T", tags:["Character","Design"], tab:"concept" },
+  { file:"Puppet3.png", title:"Illustrated Art 3", desc:"Rendered a motion graphics scene for the short film L.O.S.T", tags:["Character","Design"], tab:"concept" },
+  { file:"DND2.png", title:"Tank A", desc:"Original character concept art for a dnd story", tags:["Character","Design"], tab:"concept" },
+  { file:"DND1.png", title:"Druid A", desc:"Original character concept art for a dnd story", tags:["Character","Design"], tab:"concept" },
+  { file:"DND4.png", title:"Boss A", desc:"Original character concept art for a dnd story", tags:["Character","Design"], tab:"concept" },
+  { file:"DND3.png", title:"Boss B", desc:"Original character concept art for a dnd story", tags:["Character","Design"], tab:"concept" },
+  { file:"DND5.png", title:"Boss A", desc:"Original character concept art for a dnd story", tags:["Character","Design"], tab:"concept" },
 
 ];
