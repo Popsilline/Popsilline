@@ -57,11 +57,11 @@ const GALLERY = [
   { file:"Anomaly9.png",  title:"Anamoly Env 3",         desc:"Semester 5 short film · Solo texturing artist· Substance Painter 3D · Blender",                               tags:["Texturing","Shaders","Compositing","Blender","Character"],    tab:"texturing" },
   { file:"Anomaly10.png",  title:"Anamoly Env 4",         desc:"Semester 5 short film · Solo texturing artist· Substance Painter 3D · Blender",                               tags:["Texturing","Shaders","Compositing","Blender","Character"],    tab:"texturing" },
   { file:"ceiling2.png",  title:"Ceiling Bot",         desc:"Semester 5 short film · Solo texturing artist· Substance Painter 3D · Blender",                               tags:["Texturing", "Blender","Character"],    tab:"texturing" },
-  { file:"data.png",  title:"Data Bot",         desc:"Semester 5 short film · Solo texturing artist· Substance Painter 3D · Blender",                               tags:["Texturing", "Blender","Character"],    tab:"texturing" },
+  { file:"data.jpg",  title:"Data Bot",         desc:"Semester 5 short film · Solo texturing artist· Substance Painter 3D · Blender",                               tags:["Texturing", "Blender","Character"],    tab:"texturing" },
   { file:"MiniGuard.png",  title:"Mini Guard Bot",         desc:"Semester 5 short film · Solo texturing artist· Substance Painter 3D · Blender",                               tags:["Texturing", "Blender","Character"],    tab:"texturing" },
   { file:"Mainbot1.png",  title:"Main Bot",         desc:"Semester 5 short film · Solo texturing artist· Substance Painter 3D · Blender",                               tags:["Texturing", "Blender","Character"],    tab:"texturing" },
   { file:"ceiling2.png",  title:"Ceiling Bot",         desc:"Semester 5 short film · Solo texturing artist· Substance Painter 3D · Blender",                               tags:["Texturing", "Blender","Character"],    tab:"texturing" },
-  { file:"character4.png",  title:"Hand painted texture test",         desc:"Personal project· Substance Painter 3D · Blender",                               tags:["Texturing", "Substance Painter 3D","Character"],    tab:"texturing" },
+  { file:"character4.jpg",  title:"Hand painted texture test",         desc:"Personal project· Substance Painter 3D · Blender",                               tags:["Texturing", "Substance Painter 3D","Character"],    tab:"texturing" },
   
   // { file:"texture-1.jpg", title:"Skin Texture Study", desc:"Pore-level detail in Substance Painter", tags:["Substance Painter","Skin"], tab:"texturing" },
 
