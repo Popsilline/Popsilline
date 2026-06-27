@@ -229,81 +229,61 @@ section:nth-of-type(even){background:var(--ink2)}
   color:var(--muted);font-weight:600;white-space:nowrap;
 }
 
-/* ── HIGHLIGHTS STRIP ── */
-.highlights-header{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:1rem;
-}
-.highlights-header .s-label{margin-bottom:0}
-.scroll-hint{
-  font-size:.72rem;color:var(--muted);letter-spacing:.06em;
-  display:flex;align-items:center;gap:.35rem;opacity:.7;
-}
-.scroll-hint::after{content:'→';font-size:.8rem}
-
-.highlights-track-wrap{
-  position:relative;
-  /* fade edges */
-}
-.highlights-track-wrap::after{
-  content:'';
-  position:absolute;top:0;right:0;bottom:0;width:80px;
-  background:linear-gradient(to left,var(--ink) 0%,transparent 100%);
-  pointer-events:none;z-index:2;
-}
-section:nth-of-type(even) .highlights-track-wrap::after{
-  background:linear-gradient(to left,var(--ink2) 0%,transparent 100%);
-}
-
-.highlights-track{
+/* ── HIGHLIGHTS CAROUSEL ── */
+.carousel-outer{position:relative}
+.carousel-wrap{overflow:hidden;border-radius:14px}
+.carousel-track{
   display:flex;gap:1rem;
-  overflow-x:auto;
-  padding-bottom:.75rem;
-  /* hide scrollbar but keep scrolling */
-  scrollbar-width:none;
-  -ms-overflow-style:none;
-  cursor:grab;
+  transition:transform .65s cubic-bezier(.4,0,.2,1);
+  will-change:transform;
 }
-.highlights-track::-webkit-scrollbar{display:none}
-.highlights-track:active{cursor:grabbing}
-
-.hl-card{
+.carousel-slide{
   flex-shrink:0;
-  width:240px;
-  border-radius:12px;
-  overflow:hidden;
+  width:calc(33.333% - .68rem);
+  border-radius:14px;overflow:hidden;
   border:1px solid var(--border);
-  position:relative;
-  cursor:pointer;
-  transition:border-color .25s,transform .25s;
+  position:relative;cursor:pointer;background:#091020;
+  transition:border-color .25s,transform .25s,box-shadow .25s;
 }
-.hl-card:hover{border-color:rgba(147,197,253,.4);transform:translateY(-3px)}
-.hl-card--video{cursor:default}
-.hl-card--video:hover{transform:none}
-
-.hl-thumb{
-  width:100%;height:150px;
-  position:relative;overflow:hidden;
-  background:#091020;
-}
-.hl-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
-.hl-card:hover .hl-thumb img{transform:scale(1.05)}
-.hl-thumb iframe{width:100%;height:100%;border:0;display:block}
-
-.hl-overlay{
+.carousel-slide:hover{border-color:rgba(147,197,253,.45);transform:translateY(-4px);box-shadow:0 12px 36px rgba(37,99,235,.18)}
+.carousel-slide--video{cursor:default}
+.carousel-slide--video:hover{transform:none;box-shadow:none}
+.cs-thumb{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden;background:#091020}
+.cs-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.carousel-slide:hover .cs-thumb img{transform:scale(1.04)}
+.cs-thumb iframe{width:100%;height:100%;border:0;display:block}
+.cs-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(4,8,20,.88) 0%,transparent 55%);
+  background:linear-gradient(to top,rgba(4,8,20,.92) 0%,rgba(4,8,20,.15) 55%,transparent 100%);
   display:flex;flex-direction:column;justify-content:flex-end;
-  padding:.75rem .9rem;pointer-events:none;
+  padding:1rem 1.1rem;pointer-events:none;
 }
-.hl-badge{
-  display:inline-flex;align-items:center;
-  font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--ice);font-weight:600;margin-bottom:.3rem;
+.cs-badge{
+  display:inline-flex;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ice);font-weight:600;margin-bottom:.35rem;
   background:rgba(37,99,235,.3);border:1px solid rgba(37,99,235,.45);
-  border-radius:20px;padding:.15rem .55rem;width:fit-content;
+  border-radius:20px;padding:.15rem .6rem;width:fit-content;
 }
-.hl-overlay h3{font-family:'Space Grotesk',sans-serif;font-size:.82rem;font-weight:700;color:#fff;line-height:1.25}
+.cs-overlay h3{font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:700;color:#fff;line-height:1.25}
+.cs-overlay p{font-size:.72rem;color:rgba(147,197,253,.75);margin-top:.2rem;line-height:1.4}
+
+/* Carousel controls */
+.carousel-controls{display:flex;align-items:center;justify-content:space-between;margin-top:1rem}
+.carousel-dots{display:flex;gap:.45rem;align-items:center}
+.cdot{
+  width:6px;height:6px;border-radius:3px;
+  background:var(--border);transition:background .3s,width .3s;
+  cursor:pointer;border:none;padding:0;
+}
+.cdot.active{background:var(--ice);width:18px}
+.carousel-arrows{display:flex;gap:.5rem}
+.cbtn{
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.3);
+  color:var(--ice);cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;transition:background .2s;
+}
+.cbtn:hover{background:rgba(37,99,235,.35)}
 
 /* ── BROWSE FOLDERS ── */
 .gallery-folders{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.25rem}
@@ -329,20 +309,32 @@ section:nth-of-type(even) .highlights-track-wrap::after{
 .gfolder:hover .gfolder-arrow{background:rgba(37,99,235,.35);transform:translateX(2px)}
 
 /* ── FOLDER OPEN STATE ── */
-.gallery-back{
-  display:none;align-items:center;gap:.5rem;
-  font-family:'Space Grotesk',sans-serif;font-size:.82rem;font-weight:600;
-  color:var(--muted);cursor:pointer;border:none;background:none;padding:0;
-  margin-bottom:1.5rem;transition:color .2s;
+/* Sticky frosted-glass back bar */
+#gallery-back-bar{
+  display:none;
+  position:sticky;top:calc(var(--nav) + .5rem);z-index:100;
+  background:rgba(6,9,18,.88);backdrop-filter:blur(16px);
+  border:1px solid rgba(147,197,253,.2);border-radius:10px;
+  padding:.7rem 1.25rem;margin-bottom:1.75rem;
+  align-items:center;justify-content:space-between;
+  box-shadow:0 4px 24px rgba(0,0,0,.6);
 }
-.gallery-back.visible{display:flex}
-.gallery-back:hover{color:var(--ice)}
-.gallery-back svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
-.gallery-folder-title{
-  font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;
-  color:var(--text);margin-bottom:1.5rem;display:none;
+#gallery-back-bar.visible{display:flex}
+.back-left{display:flex;align-items:center;gap:.85rem}
+.back-btn{
+  display:flex;align-items:center;gap:.4rem;
+  font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:600;
+  color:var(--ice);cursor:pointer;
+  border:1px solid rgba(147,197,253,.28);
+  background:rgba(37,99,235,.15);border-radius:7px;padding:.38rem .85rem;
+  transition:background .2s;white-space:nowrap;
 }
-.gallery-folder-title.visible{display:block}
+.back-btn:hover{background:rgba(37,99,235,.35)}
+.back-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;flex-shrink:0}
+#back-folder-title{
+  font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:700;color:var(--text);
+}
+#back-item-count{font-size:.75rem;color:var(--muted)}
 
 .gallery-panel{display:none}
 .gallery-panel.active{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;animation:fadeUp .35s ease}
@@ -672,14 +664,20 @@ footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-si
     <div class="dash"></div>
   </div>
 
-  <!-- HIGHLIGHTS STRIP -->
+  <!-- HIGHLIGHTS CAROUSEL -->
   <div class="rv">
-    <div class="highlights-header">
-      <p class="s-label" style="margin-bottom:0">Highlights</p>
-      <span class="scroll-hint">Scroll to browse</span>
-    </div>
-    <div class="highlights-track-wrap">
-      <div class="highlights-track" id="highlights-track"></div>
+    <p class="s-label" style="margin-bottom:1rem">Highlights</p>
+    <div class="carousel-outer">
+      <div class="carousel-wrap">
+        <div class="carousel-track" id="carousel-track"></div>
+      </div>
+      <div class="carousel-controls">
+        <div class="carousel-dots" id="carousel-dots"></div>
+        <div class="carousel-arrows">
+          <button class="cbtn" id="cbtn-prev">&#8592;</button>
+          <button class="cbtn" id="cbtn-next">&#8594;</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -690,12 +688,17 @@ footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-si
     <div class="gallery-divider-line"></div>
   </div>
 
-  <!-- Back button (shown when inside a folder) -->
-  <button class="gallery-back" id="gallery-back">
-    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-    Back to Categories
-  </button>
-  <div class="gallery-folder-title" id="gallery-folder-title"></div>
+  <!-- Sticky back bar — only shown when inside a folder -->
+  <div id="gallery-back-bar">
+    <div class="back-left">
+      <button class="back-btn" id="gallery-back-btn">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        All Categories
+      </button>
+      <span id="back-folder-title"></span>
+    </div>
+    <span id="back-item-count"></span>
+  </div>
 
   <!-- Folder cards -->
   <div class="gallery-folders rv" id="gallery-folders"></div>
@@ -881,23 +884,23 @@ document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
    GALLERY — built from gallery-data.js
    ════════════════════════════════════════════ */
 
-const HIGHLIGHTS_FILES = [
+const CAROUSEL_ITEMS = [
   "Thomasrender.png",
-  "Office2.png",
   { video:"https://www.youtube.com/embed/9PyXsaMlpwc?si=jvE5ZODFuWxTJaJx", title:"Pixel Deer — Shader Study", desc:"Procedural shaders · pure shader-driven look · Blender", tab:"lighting" },
-  { video:"https://www.youtube.com/embed/bDqANNmcFd4?si=EI6gqOIOlkMg_oj8", title:"Deltarune — Fan Scene", desc:"All characters sculpted, shaders & environment built in one day · Blender", tab:"lighting" },
   "Aurobindo11.png",
-  "Lucifer1.png",
+  { video:"https://www.youtube.com/embed/bDqANNmcFd4?si=EI6gqOIOlkMg_oj8", title:"Deltarune — Fan Scene", desc:"Sculpted, shaded & environment built in one day · Blender", tab:"lighting" },
   "Bane3.png",
+  "Lucifer1.png",
+  "Office2.png",
   "Lapras3.png",
 ];
 
 const FOLDER_META = {
-  modelling: { label:"Modelling",   color:"#2563EB" },
-  lighting:  { label:"Lighting",    color:"#1e40af" },
-  texturing: { label:"Texturing",   color:"#1d4ed8" },
-  films:     { label:"Films",       color:"#1e3a8a" },
-  concept:   { label:"Concept Art", color:"#3b82f6" },
+  modelling: { label:"Modelling"   },
+  lighting:  { label:"Lighting"    },
+  texturing: { label:"Texturing"   },
+  films:     { label:"Films"       },
+  concept:   { label:"Concept Art" },
 };
 
 function makeCard(item,idx){
@@ -921,44 +924,61 @@ function makeCard(item,idx){
 function buildGallery(){
   if(typeof GALLERY==='undefined')return;
 
-  /* ── HIGHLIGHTS STRIP ── */
-  const track=document.getElementById('highlights-track');
-  if(track){
-    const hlItems=HIGHLIGHTS_FILES.map(f=>{
+  /* ── CAROUSEL ── */
+  const track=document.getElementById('carousel-track');
+  const dotsEl=document.getElementById('carousel-dots');
+  if(track&&dotsEl){
+    const slides=CAROUSEL_ITEMS.map(f=>{
       if(typeof f==='object')return f;
       return GALLERY.find(i=>i.file===f);
     }).filter(Boolean);
-    track.innerHTML=hlItems.map(item=>{
+
+    const PER_PAGE=3;
+    const totalPages=Math.ceil(slides.length/PER_PAGE);
+    let curPage=0,autoTimer=null;
+
+    track.innerHTML=slides.map(item=>{
+      const tabLabel=FOLDER_META[item.tab]?.label||'';
+      const isVideo=!!item.video;
       const idx=GALLERY.indexOf(item);
-      const tabLabel=FOLDER_META[item.tab]?.label||item.tab||'';
-      if(item.video){
-        return `<div class="hl-card hl-card--video">
-          <div class="hl-thumb">
-            <iframe src="${item.video}" style="width:100%;height:100%;border:0" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <div class="hl-overlay">
-            <span class="hl-badge">${tabLabel}</span>
-            <h3>${item.title}</h3>
-          </div>
-        </div>`;
-      }
-      return `<div class="hl-card" onclick="openLightbox(${idx})">
-        <div class="hl-thumb">
-          <img src="images/${item.file}" alt="${item.title}" loading="lazy">
-        </div>
-        <div class="hl-overlay">
-          <span class="hl-badge">${tabLabel}</span>
+      const clickAttr=(!isVideo&&idx>=0)?`onclick="openLightbox(${idx})"`:'';
+      const thumb=isVideo
+        ?`<iframe src="${item.video}" style="width:100%;height:100%;border:0" allowfullscreen loading="lazy"></iframe>`
+        :`<img src="images/${item.file}" alt="${item.title}" loading="lazy">`;
+      return `<div class="carousel-slide${isVideo?' carousel-slide--video':''}" ${clickAttr}>
+        <div class="cs-thumb">${thumb}</div>
+        <div class="cs-overlay">
+          <span class="cs-badge">${tabLabel}</span>
           <h3>${item.title}</h3>
+          <p>${(item.desc||'').split('·')[0].trim()}</p>
         </div>
       </div>`;
     }).join('');
 
-    /* drag-to-scroll */
-    let isDown=false,startX,scrollLeft;
-    track.addEventListener('mousedown',e=>{isDown=true;track.style.cursor='grabbing';startX=e.pageX-track.offsetLeft;scrollLeft=track.scrollLeft});
-    track.addEventListener('mouseleave',()=>{isDown=false;track.style.cursor='grab'});
-    track.addEventListener('mouseup',()=>{isDown=false;track.style.cursor='grab'});
-    track.addEventListener('mousemove',e=>{if(!isDown)return;e.preventDefault();const x=e.pageX-track.offsetLeft;track.scrollLeft=scrollLeft-(x-startX)*1.2});
+    dotsEl.innerHTML=Array.from({length:totalPages},(_,i)=>
+      `<button class="cdot${i===0?' active':''}" data-page="${i}"></button>`
+    ).join('');
+
+    function goTo(page){
+      curPage=(page+totalPages)%totalPages;
+      const slideEl=track.querySelector('.carousel-slide');
+      if(!slideEl)return;
+      const slideW=slideEl.offsetWidth;
+      const gap=16;
+      track.style.transform=`translateX(-${curPage*PER_PAGE*(slideW+gap)}px)`;
+      dotsEl.querySelectorAll('.cdot').forEach((d,i)=>d.classList.toggle('active',i===curPage));
+    }
+    function startAuto(){autoTimer=setInterval(()=>goTo(curPage+1),3000)}
+    function stopAuto(){clearInterval(autoTimer)}
+
+    document.getElementById('cbtn-prev').addEventListener('click',()=>{stopAuto();goTo(curPage-1);startAuto()});
+    document.getElementById('cbtn-next').addEventListener('click',()=>{stopAuto();goTo(curPage+1);startAuto()});
+    dotsEl.addEventListener('click',e=>{
+      const btn=e.target.closest('.cdot');
+      if(btn){stopAuto();goTo(+btn.dataset.page);startAuto()}
+    });
+    window.addEventListener('resize',()=>goTo(curPage));
+    startAuto();
   }
 
   /* ── FOLDER CARDS ── */
@@ -967,16 +987,16 @@ function buildGallery(){
     const tabs=['modelling','lighting','texturing','films','concept'];
     foldersEl.innerHTML=tabs.map(tab=>{
       const meta=FOLDER_META[tab];
-      const items=GALLERY.filter(i=>i.tab===tab&&i.file);
+      const imgItems=GALLERY.filter(i=>i.tab===tab&&i.file);
       const count=GALLERY.filter(i=>i.tab===tab).length;
-      const previews=items.slice(0,3);
+      const previews=imgItems.slice(0,3);
       while(previews.length<3)previews.push(null);
       const previewHtml=previews.map(p=>p
         ?`<div><img src="images/${p.file}" alt="" loading="lazy"></div>`
         :`<div class="empty"></div>`
       ).join('');
       return `<div class="gfolder" onclick="openFolder('${tab}')">
-        <div class="gfolder-tab" style="background:linear-gradient(90deg,${meta.color},${meta.color}99)"></div>
+        <div class="gfolder-tab"></div>
         <div class="gfolder-previews">${previewHtml}</div>
         <div class="gfolder-info">
           <div><h3>${meta.label}</h3><span class="gfolder-count">${count} piece${count!==1?'s':''}</span></div>
@@ -996,25 +1016,31 @@ function buildGallery(){
   });
 }
 
+/* ── Folder open / close ── */
+const _carouselRv=()=>document.getElementById('carousel-track')?.closest('.rv');
+const _divider=()=>document.querySelector('.gallery-divider');
+const _folders=()=>document.getElementById('gallery-folders');
+
 function openFolder(tab){
-  document.getElementById('gallery-folders').style.display='none';
-  document.getElementById('highlights-track').closest('.rv').style.display='none';
-  document.querySelector('.gallery-divider').style.display='none';
+  const meta=FOLDER_META[tab];
+  const count=(typeof GALLERY!=='undefined')?GALLERY.filter(i=>i.tab===tab).length:0;
+  _folders().style.display='none';
+  if(_carouselRv())_carouselRv().style.display='none';
+  if(_divider())_divider().style.display='none';
   document.querySelectorAll('.gallery-panel').forEach(p=>p.classList.remove('active'));
   document.getElementById('tab-'+tab).classList.add('active');
-  document.getElementById('gallery-back').classList.add('visible');
-  const title=document.getElementById('gallery-folder-title');
-  title.textContent=FOLDER_META[tab]?.label||tab;
-  title.classList.add('visible');
+  document.getElementById('back-folder-title').textContent=meta?.label||tab;
+  document.getElementById('back-item-count').textContent=count+' piece'+(count!==1?'s':'');
+  document.getElementById('gallery-back-bar').classList.add('visible');
+  document.getElementById('gallery').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-document.getElementById('gallery-back').addEventListener('click',()=>{
+document.getElementById('gallery-back-btn').addEventListener('click',()=>{
   document.querySelectorAll('.gallery-panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('gallery-folders').style.display='grid';
-  document.getElementById('highlights-track').closest('.rv').style.display='';
-  document.querySelector('.gallery-divider').style.display='';
-  document.getElementById('gallery-back').classList.remove('visible');
-  document.getElementById('gallery-folder-title').classList.remove('visible');
+  _folders().style.display='grid';
+  if(_carouselRv())_carouselRv().style.display='';
+  if(_divider())_divider().style.display='';
+  document.getElementById('gallery-back-bar').classList.remove('visible');
 });
 
 buildGallery();
