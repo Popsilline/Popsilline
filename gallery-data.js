@@ -78,6 +78,8 @@ const GALLERY = [
 
   // ── MORNING RESETS — SHORT FILM ──────────────────────────
   // Lighting, procedural shaders & compositing for ~40 shots · Blender
+  { file:"Office2.png",  title:"Office shot",         desc:"Personal short film · Lit & composited ~40 shots solo · procedural shaders for all assets & characters · Blender",                               tags:["Lighting","Shaders","Compositing","Blender","Character"],    tab:"lighting" },
+  { file:"Teacherapproach.png",  title:"Void shot lighting",         desc:"Personal short film · Lit & composited ~40 shots solo · procedural shaders for all assets & characters · Blender",                               tags:["Lighting","Shaders","Compositing","Blender","Character"],    tab:"lighting" },
   { video:"https://www.youtube.com/embed/NwqAJHVRg_g?si=eA8nEMx3vjGgVNyM", title:"Morning Resets — Clip 1",  desc:"Personal short film · Lit & composited ~40 shots solo · procedural shaders for all assets & characters · Blender", tags:["Film","Lighting","Shaders","Compositing","Blender"], tab:"lighting" },
   { video:"https://www.youtube.com/embed/AlurQVwHKAc?si=v8J84rhPY8HEOjJY", title:"Morning Resets — Clip 2",  desc:"Personal short film · Lit & composited ~40 shots solo · procedural shaders for all assets & characters · Blender", tags:["Film","Lighting","Shaders","Compositing","Blender"], tab:"lighting" },
   { video:"https://www.youtube.com/embed/JTYcNHJgLqk?si=hQzTQinEsGkb4D74", title:"Morning Resets — Clip 3",  desc:"Personal short film · Lit & composited ~40 shots solo · procedural shaders for all assets & characters · Blender", tags:["Film","Lighting","Shaders","Compositing","Blender"], tab:"lighting" },
