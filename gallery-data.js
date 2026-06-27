@@ -52,6 +52,14 @@ const GALLERY = [
   // ── TEXTURING ────────────────────────────────────────────
   // Add texturing work here:
   { video:"https://www.youtube.com/embed/Tq54Z-hB7Oo?si=pxYcQiMgF7qwfmjE", title:"Anomaly — Clip 1",  desc:"Semester 5 short film · Solo texturing artist· Substance Painter 3D · Blender", tags:["Film","Shaders","Texturing","Blender"], tab:"texturing" },
+  { file:"KidSalvia.png",      title:"Kid Salvia",              desc:"Stylised character · Short film",      tags:["Character","Stylised","Substance Painter"],                tab:"texturing" },
+  { file:"PrettyG.png",      title:"Pretty Gardenia",              desc:"Stylised character · Short film",      tags:["Character","Stylised","Substance Painter"],                tab:"texturing" },
+  { file:"UG.png",      title:"Gardenia V02",              desc:"Stylised character · Short film",      tags:["Character","Stylised","Substance Painter"],                tab:"texturing" },
+  { file:"AdultSalvia.png",      title:"Adult Salvia",              desc:"Stylised character · Short film",      tags:["Character","Stylised","Substance Painter"],                tab:"texturing" },
+  { file:"Thomasrender.png",      title:"Thomas Warrior",              desc:"Stylised character · Personal Project",      tags:["Character","Stylised","Blender"],                tab:"texturing" },
+  { file:"Handpaintedclock.png",      title:"Hand painted stylized clock",              desc:"Stylised asset · Short film",      tags:["Character","Stylised","Substance Painter"],                tab:"texturing" },
+  { file:"Teacherapproach.png",      title:"Teacher Monster approaching",              desc:"Stylised character · Short film",      tags:["Character","Stylised","Substance Painter"],                tab:"texturing" },
+  { file:"Classroom.png",      title:"Classroom",              desc:"Stylised environment assets · Short film",      tags:["Character","Stylised","Substance Painter"],                tab:"texturing" },
   { file:"Anomaly1.png",  title:"Anamoly Env 1",         desc:"Semester 5 short film · Solo texturing artist· Substance Painter 3D · Blender",                               tags:["Texturing","Shaders","Compositing","Blender","Character"],    tab:"texturing" },
   { file:"Anomaly4.png",  title:"Anamoly Env 2",         desc:"Semester 5 short film · Solo texturing artist· Substance Painter 3D · Blender",                               tags:["Texturing","Shaders","Compositing","Blender","Character"],    tab:"texturing" },
   { file:"Anomaly9.png",  title:"Anamoly Env 3",         desc:"Semester 5 short film · Solo texturing artist· Substance Painter 3D · Blender",                               tags:["Texturing","Shaders","Compositing","Blender","Character"],    tab:"texturing" },
