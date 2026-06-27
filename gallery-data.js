@@ -51,6 +51,7 @@ const GALLERY = [
 
   // ── TEXTURING ────────────────────────────────────────────
   // Add texturing work here:
+  // { file:"texture-1.jpg", title:"Skin Texture Study", desc:"Pore-level detail in Substance Painter", tags:["Substance Painter","Skin"], tab:"texturing" },
   { video:"https://www.youtube.com/embed/Tq54Z-hB7Oo?si=pxYcQiMgF7qwfmjE", title:"Anomaly — Clip 1",  desc:"Semester 5 short film · Solo texturing artist· Substance Painter 3D · Blender", tags:["Film","Shaders","Texturing","Blender"], tab:"texturing" },
   { file:"KidSalvia.png",      title:"Kid Salvia",              desc:"Stylised character · Short film",      tags:["Character","Stylised","Substance Painter"],                tab:"texturing" },
   { file:"PrettyG.png",      title:"Pretty Gardenia",              desc:"Stylised character · Short film",      tags:["Character","Stylised","Substance Painter"],                tab:"texturing" },
@@ -70,8 +71,6 @@ const GALLERY = [
   { file:"Mainbot1.png",  title:"Main Bot",         desc:"Semester 5 short film · Solo texturing artist· Substance Painter 3D · Blender",                               tags:["Texturing", "Blender","Character"],    tab:"texturing" },
   { file:"ceiling2.png",  title:"Ceiling Bot",         desc:"Semester 5 short film · Solo texturing artist· Substance Painter 3D · Blender",                               tags:["Texturing", "Blender","Character"],    tab:"texturing" },
   { file:"character4.jpg",  title:"Hand painted texture test",         desc:"Personal project· Substance Painter 3D · Blender",                               tags:["Texturing", "Substance Painter 3D","Character"],    tab:"texturing" },
-  
-  // { file:"texture-1.jpg", title:"Skin Texture Study", desc:"Pore-level detail in Substance Painter", tags:["Substance Painter","Skin"], tab:"texturing" },
 
 
 
