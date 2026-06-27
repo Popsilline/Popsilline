@@ -25,7 +25,7 @@ const GALLERY = [
   { file:"Queen2.png",               title:"Queen Chess — Back View",      desc:"Back view showing gown silhouette & hair braid detail",                    tags:["Character","Cloth","ZBrush"],                 tab:"modelling" },
 
   // ── THOMAS — WARRIOR BIRD ────────────────────────────────
-  { file:"Thomas_wing_spread.png",   title:"Thomas — Wings Spread",        desc:"Warrior bird creature sculpt · full wingspan & sword prop · ZBrush",      tags:["Creature","ZBrush","Props"],                  tab:"modelling" },
+  { file:"Thomas wing spread.png",   title:"Thomas — Wings Spread",        desc:"Warrior bird creature sculpt · full wingspan & sword prop · ZBrush",      tags:["Creature","ZBrush","Props"],                  tab:"modelling" },
 
   // ── ABSOLUTE BANE ────────────────────────────────────────
   { file:"Bane2.png",                title:"Absolute Bane — Torso Detail", desc:"Close-up of hyper-muscular anatomy & tactical gear",                      tags:["Anatomy","Hard Surface","ZBrush"],            tab:"modelling" },
@@ -42,11 +42,11 @@ const GALLERY = [
   { file:"Salvia.png",               title:"Salvia — Front",               desc:"Stylised chibi character · scalloped dress & detailed curly hair",        tags:["Character","Stylised","Maya","Chibi"],        tab:"modelling" },
 
   // ── GARDENIA ─────────────────────────────────────────────
-  { file:"Gardenia_V01.png",         title:"Gardenia V01",                 desc:"Gardenia character variant 1 · braided pigtails & scalloped dress",       tags:["Character","Stylised","Maya","Chibi"],        tab:"modelling" },
-  { file:"Gardenia_V02.png",         title:"Gardenia V02",                 desc:"Gardenia character variant 2 · twin buns hairstyle",                      tags:["Character","Stylised","Maya","Chibi"],        tab:"modelling" },
+  { file:"Gardenia V01.png",         title:"Gardenia V01",                 desc:"Gardenia character variant 1 · braided pigtails & scalloped dress",       tags:["Character","Stylised","Maya","Chibi"],        tab:"modelling" },
+  { file:"Gardenia V02.png",         title:"Gardenia V02",                 desc:"Gardenia character variant 2 · twin buns hairstyle",                      tags:["Character","Stylised","Maya","Chibi"],        tab:"modelling" },
 
   // ── MONSTER TEACHER ──────────────────────────────────────
-  { file:"Monster_Teacher.png",      title:"Monster Teacher",              desc:"Stylised slim character · shirt, tie, belt & elongated proportions",      tags:["Character","Stylised","Maya"],                tab:"modelling" },
+  { file:"Monster Teacher.png",      title:"Monster Teacher",              desc:"Stylised slim character · shirt, tie, belt & elongated proportions",      tags:["Character","Stylised","Maya"],                tab:"modelling" },
 
 
   // ── TEXTURING ────────────────────────────────────────────
